@@ -17,12 +17,14 @@ You are to create a simple todo list application using React. The application sh
 3. The list should be stored in the browser's localStorage, so that the todos persist even after refreshing the page.
 4. Each todo item in the list should have a "Delete" button, which removes the todo from both the list and localStorage.
 5. Make the "Fill in list" button work - should fetch data from this web API: https://jsonplaceholder.typicode.com/posts/
+ - it should be accessing the data from the "title" property of the JSON object.
 
 ### Challenge 2: Page Navigation and local storage
 "LoginPage": (http://localhost:3000)
 1. Users can log in by providing a username and password - any username or password should work.
-2. After successful login, the username and password should be stored in localStorage and also console.logged.
-3. Once logged in, the user should be redirected to a "Home" page (react router redirect), which displays a Todo List.
+2. After successful login, the username and password should be console.logged.
+3. Once the log in button is clicked, the user should be redirected to a "Home" page (react router redirect), which displays a Todo List.
+ - useNavigate hook (https://www.geeksforgeeks.org/reactjs-usenavigate-hook/) or Link (https://reactrouter.com/en/main/components/link)
 bonus - add functionality to the Logout button in the "Home page" (should take users back to Sign In page).
 
 For both challenges, encourage the use of React Query for handling data fetching and caching.
