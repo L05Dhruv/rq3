@@ -18,23 +18,3 @@ function App() {
 }
 
 export default App;
-
-fetch('https://jsonplaceholder.typicode.com/posts')
-
-  .then(response => response.json())
-
-  .then(data => {
-
-    // Process the received data
-
-    console.log(data);
-
-  })
-
-  .catch(error => {
-
-    // Handle error if any
-
-    console.error(error);
-
-  });

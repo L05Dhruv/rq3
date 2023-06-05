@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-const TodoList = () => {
+export const TodoList = () => {
+
   const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [friends, setFriends] = useState([]);
+  const refInput = useRef("");
+  const navigate = useNavigate();
+  
+  const usersQuery = useQuery(`posts`, async () => {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+    return response.data
+  });
 
   useEffect(() => {
     // Load todos from localStorage
@@ -18,31 +29,46 @@ const TodoList = () => {
   }, [todos]);
 
   const handleAddTodo = () => {
-    if (inputValue.trim()) {
-      setTodos([...todos, inputValue]);
-      setInputValue("");
-    }
+      console.log(refInput.current.value);
+      setTodos([...todos, refInput.current.value]);
+      refInput.current.value = "";
   };
+
+
+  const handleFetchFriends = async () => {
+    await usersQuery.refetch();
+    
+    const friendsArray = await usersQuery.data;
+    console.log(friendsArray);
+
+    const friendsNamesArray = friendsArray.map((friend) => {
+      return friend.name;
+    });
+    
+    setFriends(friendsNamesArray);
+  }
 
   const handleDeleteTodo = (index) => {
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
   };
-
+  
   const handleLogout = () => {
     // Clear token from localStorage
     localStorage.removeItem("user");
+    // route user back to sign in page
+    navigate('/');
   };
 
   return (
     <div>
       <input
+        ref={refInput}
         type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
       />
-      <button onClick={handleAddTodo}>Add</button>
-      <ul>
+      <button onClick={handleAddTodo}>Add to your list</button>
+      <h3>To do:</h3>
+      <ul id="todo-list">
         {todos.map((todo, index) => (
           <li key={index}>
             {todo}
@@ -50,9 +76,20 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
-      <button id="logout-btn" onClick={handleLogout}>Logout</button>
+      <button id="get-friends-btn" onClick={handleFetchFriends}>Get friends list</button>
+      <h3>Your active friends: </h3>
+      <ul id="friends-list">
+        {friends.map((friend, index) => {
+          return(
+            <li key={index}>
+              {friend}
+            </li>
+          )
+        })}
+      </ul>
+      <button id="logout-btn" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };
-
-export default TodoList;

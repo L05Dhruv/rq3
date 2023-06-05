@@ -8,5 +8,18 @@
 }
 
 #logout-btn {
-  margin-top: 30vh;
+  margin-top: 10vh;
+}
+
+#todo-list {
+  list-style-type:circle;
+}
+
+#get-friends-btn {
+  margin-top: 15vh;
+}
+
+#friends-list {
+  list-style: none;
+  margin-top: 8vh;
 }
