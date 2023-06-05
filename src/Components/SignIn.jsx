@@ -4,20 +4,13 @@ import { useNavigate } from "react-router-dom";
 export const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      // Store token in localStorage
-      localStorage.setItem("user", username);
-      localStorage.setItem("pass", password);
-
-      // Navigate user to home page
-      navigate("/home");
-    } catch (error) {
-      console.log("Login failed:", error);
-    }
+    // Store token in localStorage
+    
+    // Navigate user to home page
   };
 
   return (

@@ -10,76 +10,63 @@ export const TodoList = () => {
   const refInput = useRef("");
   const navigate = useNavigate();
   
-  const usersQuery = useQuery(`posts`, async () => {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return response.data
-  });
+  // Set up the proper usage of useQuery hook
+  const usersQuery = useQuery();
 
   useEffect(() => {
-    // Load todos from localStorage
-    const storedTodos = localStorage.getItem("todos");
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
-    }
+    // Load todos (if any) from localStorage
+    
+    // parse through the stored to-do's and set them in state
+    
   }, []);
 
   useEffect(() => {
     // Save todos to localStorage
-    localStorage.setItem("todos", JSON.stringify(todos));
+    
   }, [todos]);
 
   const handleAddTodo = () => {
-      console.log(refInput.current.value);
-      setTodos([...todos, refInput.current.value]);
-      refInput.current.value = "";
+      // access the input and update the state variable "todos"
   };
 
 
   const handleFetchFriends = async () => {
+    // refetch your implementation of the useQuery hook
     await usersQuery.refetch();
     
-    const friendsArray = await usersQuery.data;
-    console.log(friendsArray);
-
-    const friendsNamesArray = friendsArray.map((friend) => {
-      return friend.name;
-    });
+    // extract data into a new array and extract only the names from this array of objects
     
-    setFriends(friendsNamesArray);
+    
+    //setFriends(friendsNamesArray);
   }
 
   const handleDeleteTodo = (index) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
+    // filter out the todo that was deleted from the array - hint: keep the rest of the todos in an array
+
+    // update todos array
   };
   
   const handleLogout = () => {
     // Clear token from localStorage
-    localStorage.removeItem("user");
+    
     // route user back to sign in page
-    navigate('/');
+    
   };
 
   return (
     <div>
       <input
-        ref={refInput}
         type="text"
       />
       <button onClick={handleAddTodo}>Add to your list</button>
       <h3>To do:</h3>
       <ul id="todo-list">
-        {todos.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => handleDeleteTodo(index)}>Delete</button>
-          </li>
-        ))}
+        {/* Use map to return the todos here :) */}
       </ul>
       <button id="get-friends-btn" onClick={handleFetchFriends}>Get friends list</button>
       <h3>Your active friends: </h3>
       <ul id="friends-list">
-        {friends.map((friend, index) => {
+        {friends?.map((friend, index) => {
           return(
             <li key={index}>
               {friend}
