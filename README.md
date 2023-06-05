@@ -29,6 +29,6 @@ You are to create a simple todo list application using React. The application sh
 2. After successful login, the username and password should be console.logged. (10 points)
 3. Once the log in button is clicked, the user should be redirected to a "Home" page (react router redirect), which displays a Todo List. (20 points)
  - useNavigate hook (https://www.geeksforgeeks.org/reactjs-usenavigate-hook/) OR Link (https://reactrouter.com/en/main/components/link)
-bonus - add functionality to the Logout button in the "Home page" (should take users back to Sign In page). (10 points)
+4. bonus - add functionality to the Logout button in the "Home page" (should take users back to Sign In page). (10 points)
 
 For both challenges, encourage the use of React Query for handling data fetching and caching.
