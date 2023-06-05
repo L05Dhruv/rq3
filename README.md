@@ -17,7 +17,7 @@ You are to create a simple todo list application using React. The application sh
 3. The list should be stored in the browser's localStorage, so that the todos persist even after refreshing the page.
 4. Each todo item in the list should have a "Delete" button, which removes the todo from both the list and localStorage.
 5. Make the "Fill in list" button work - should fetch data from this web API: https://jsonplaceholder.typicode.com/posts/
- - it should be accessing the data from the "title" property of the JSON object.
+ - it should access the "name" property of 10 JSON objects.
 
 ### Challenge 2: Page Navigation and local storage
 "LoginPage": (http://localhost:3000)
